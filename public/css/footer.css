@@ -1,0 +1,28 @@
+@font-face {
+    font-family: hagrid;
+    src: url('../assets/font/hagrid/Hagrid-Regular-trial.ttf');
+    font-family: Poppins-Italic;
+    src: url('../assets/font/Poppins/Poppins-Italic.ttf');
+    font-family: Poppins;
+    src: url('../assets/font/Poppins/Poppins-Black.ttf');
+  }
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.3);
+    border-top: 1px solid #f9f9f935;
+    z-index: 1000;
+    color: aliceblue;
+}
+a{
+    text-decoration: none;
+    color: aliceblue;
+    text-transform: capitalize;
+}
+.make{
+    font-size: x-small;
+    font-family: Poppins;
+}
