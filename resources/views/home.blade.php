@@ -10,10 +10,43 @@
             height: 100vh;
         }
     </style>
+
+    <style>
+        --img-bg: "assets/img/photo-bg.avif";
+
+        .img-bg {
+            position: absolute;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0;
+        }
+
+        .img-bg::before {
+            content: "";
+            background-image: var(--img-bg);
+            background-size: cover;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            /* opacity: 0.5; */
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        h1 {
+            position: relative;
+        }
+    </style>
     <link rel="stylesheet" href="css/home.css">
 @endsection
 {{-- main --}}
 @section('container')
+    <div class="img-bg"></div>
     <div class="div heading">
         <h1 id="companionMethods" class="text-center te"></h1>
     </div>
@@ -133,6 +166,8 @@
 </script>
 {{-- background --}}
 <script>
+    let r = document.querySelector(":root")
+    // console.log(imgBg)
     $.ajax({
         url: 'https://api.unsplash.com/photos/random?',
         type: 'get',
@@ -142,11 +177,31 @@
             'count': '1',
         },
         success: function(result) {
-            document.body.style.backgroundImage = 'url(' + result[0].urls.regular + ')';
+            r.style.setProperty('--img-bg', 'url(' + result[0].urls.regular + ')')
+            // imgBg.targetstyle.backgroundImage = 'url(' + result[0].urls.regular + ')';
+            // console.log(result[0].color);
         },
         error: function() {
-            document.body.style.backgroundImage = 'url(assets/img/photo-bg.avif)'
+            r.style.setProperty('--img-bg', 'url(assets/img/photo-bg.avif)')
+
+            // imgBg.style.backgroundImage = 'url(assets/img/photo-bg.avif)'
         }
     })
+    // $.ajax({
+    //     url: 'https://api.unsplash.com/photos/random?',
+    //     type: 'get',
+    //     dataType: 'json',
+    //     data: {
+    //         'client_id': '<?php echo env('API_Key_BACKGROUND'); ?>',
+    //         'count': '1',
+    //     },
+    //     success: function(result) {
+    //         // document.body.style.backgroundImage = 'url(' + result[0].urls.regular + ')';
+    //         // console.log(result[0].color);
+    //     },
+    //     error: function() {
+    //         document.body.style.backgroundImage = 'url(assets/img/photo-bg.avif)'
+    //     }
+    // })
 </script>
 {{-- end js --}}

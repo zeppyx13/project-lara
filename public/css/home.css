@@ -18,21 +18,23 @@
 }
 .quotes-container{
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     box-shadow: 1px 1px 1px 1px rgba(111, 111, 111, 0.074);
     z-index: 2;
+    height: auto;
 }
 #quotes{
-    position: absolute;
+    /* position: absolute; */
     width: auto;
     height: auto;
     left: 0;
-    width: 100%;
+    /* width: 100%; */
     text-wrap: wrap;
     font-family: Poppins-Italic;
     color: aliceblue;
     text-shadow: 1px 1px rgb(0, 0, 0);
-    font-size: large;
+    font-size: x-large;
+    mix-blend-mode: difference;
 }
 
 .weather-container{
