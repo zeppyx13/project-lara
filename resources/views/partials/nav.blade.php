@@ -18,7 +18,7 @@
                 </li>
             </ul>
             <?php
-                if ($status1 != 'active'){
+                if ($status1 !== 'active' AND $status3 !== 'active' OR $status2 == 'active'){
             ?>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
