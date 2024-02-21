@@ -5,10 +5,12 @@
     src: url('../assets/font/Poppins/Poppins-Italic.ttf');
     font-family: Poppins;
     src: url('../assets/font/Poppins/Poppins-Black.ttf');
+    font-family: Poppins-light;
+    src: url('../assets/font/Poppins/Poppins-Light.ttf');
   }
 footer {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 0%;
     left: 0;
     width: 100%;
     padding: 10px;

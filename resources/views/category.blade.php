@@ -1,9 +1,9 @@
-@extends('layout.main')
-@section('css-post-single')
-    <link rel="stylesheet" href="css/post-main.css">
+@extends('layout.polos')
+@section('katagori')
+    <link rel="stylesheet" href="../css/katagori.css">
 @endsection
 @section('container')
-    <h1>Posts</h1>
+    <h1>Category : {{ $category }}</h1>
     @foreach ($posts as $post)
         <article class="mb-5">
             <h2>

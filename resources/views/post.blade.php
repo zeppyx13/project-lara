@@ -5,10 +5,11 @@
 @section('container')
     <article class="mb-5">
         <h2>
-            {{ $Post['title'] }}
+            {{ $Post->title }}
         </h2>
-        <h5>BY:{{ $Post['author'] }} </h5>
-        <p>{{ $Post['body'] }} </p>
+        <h5>BY:{{ $Post->author }} </h5>
+        <h5><a style="color: black" href="/katagory/{{ $Post->catagory->slug }}">{{ $Post->catagory->name }}</a></h5>
+        <p>{!! $Post->body !!} </p>
     </article>
     <a style="color: black" href="/blog">Back</a>
 @endsection

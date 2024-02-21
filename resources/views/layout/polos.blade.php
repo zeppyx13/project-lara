@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/footer.css">
     @yield('css-post')
+    @yield('katagori')
 </head>
 
 <body>

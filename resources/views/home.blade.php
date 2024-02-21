@@ -21,7 +21,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 0;
+            z-index: 1;
         }
 
         .img-bg::before {
@@ -35,7 +35,7 @@
             left: 0px;
             /* opacity: 0.5; */
             filter: blur(5px);
-            z-index: -1;
+            z-index: -4;
         }
 
         h1 {
@@ -75,7 +75,7 @@
             <input class="form-control me-2 mt-4" type="search" placeholder="Search Some Article" aria-label="Search">
         </form>
     </div>
-    <div id="gambar">
+    <div id="gambar" style="z-index:2;">
 
     </div>
 @endsection
@@ -159,7 +159,9 @@
         success: function(result) {
             $('#suhu').html(result.name + ', ' + result.main.feels_like + '°C')
             $('#cuaca').html(result.weather[0].description +
-                `<img width="55" height="55" src="https://openweathermap.org/img/wn/` + result.weather[
+                `<img style='z-index:3;' width="80" height="80" src="https://openweathermap.org/img/wn/` +
+                result
+                .weather[
                     0].icon + `.png" alt="">`)
         }
     })

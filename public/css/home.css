@@ -5,6 +5,8 @@
     src: url('../assets/font/Poppins/Poppins-Italic.ttf');
     font-family: Poppins;
     src: url('../assets/font/Poppins/Poppins-Black.ttf');
+    font-family: Poppins-light;
+    src: url('../assets/font/Poppins/Poppins-Light.ttf');
   }
 .garis{
     width: 50%;
@@ -45,6 +47,9 @@
     z-index: 2;
     text-wrap: wrap;
     color: aliceblue;
+    font-family: Poppins-light;
+    text-shadow: 1px 1px rgb(0, 0, 0);
+    font-size:medium;
 }
 .navbar{
     background-color: rgba(0,0,0,0.3);
@@ -54,6 +59,6 @@
     color: aliceblue;
     font-family: hagrid;
     text-wrap: wrap;
-    font-size: 12rem;
+    font-size: 150%;
     text-shadow: 1px 1px rgb(0, 0, 0);
 }
