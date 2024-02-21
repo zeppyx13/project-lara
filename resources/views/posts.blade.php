@@ -9,8 +9,8 @@
             <h2>
                 <a class="judul" href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
             </h2>
-            <h5><a style="color: black" href="/katagory/{{ $post->catagory->slug }}">{{ $post->catagory->name }}</a></h5>
-            <h5>BY:{{ $post->user->name }} </h5>
+            <h5><a style="color: black;" href="/katagory/{{ $post->catagory->slug }}">{{ $post->catagory->name }}</a></h5>
+            <h5>BY: <a style="color: black;" href="authors/{{ $post->author->username }}">{{ $post->author->name }}</a></h5>
             <p>{!! $post->excerpt !!} </p>
             <a style="color: rgb(0, 76, 255);" href="/posts/{{ $post->slug }}">Read More</a>
         </article>

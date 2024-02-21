@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="../css/katagori.css">
 @endsection
 @section('container')
-    <h1>Category : {{ $category }}</h1>
+    <h1>{{ $title }} Creataion : </h1>
     @foreach ($posts as $post)
         <article class="mb-5">
             <h2>

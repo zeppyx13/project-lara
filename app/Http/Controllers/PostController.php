@@ -14,7 +14,8 @@ class PostController extends Controller
             "status1" => "",
             "status2" => "active",
             "status3" => "",
-            "posts" => Post::all()
+            // "posts" => Post::all()
+            "posts" => Post::latest()->get()
         ]);
     }
     public function show(post $post)

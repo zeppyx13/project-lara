@@ -2,3 +2,11 @@
     background-color: rgb(0, 0, 0);
     box-shadow: 30px,30px salmon;
 }
+.judul{
+    margin-top: 20px;
+    color: black;
+    text-decoration: none;
+}
+.judul:hover{
+    color: rgb(255, 0, 0);
+}
