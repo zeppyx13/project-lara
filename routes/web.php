@@ -43,7 +43,7 @@ Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
         "status2" => "",
         "status3" => "active",
         'title' => $catagory->name,
-        'posts' => $catagory->posts,
+        'posts' => $catagory->posts->load('author', 'catagory'),
         'category' => $catagory->name
     ]);
 });
@@ -53,6 +53,6 @@ Route::get('/authors/{author:username}', function (User $author) {
         "status2" => "",
         "status3" => "active",
         'title' => 'Author Posts',
-        'posts' => $author->post,
+        'posts' => $author->post->load('catagory', 'author'),
     ]);
 });
