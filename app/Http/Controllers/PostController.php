@@ -15,7 +15,7 @@ class PostController extends Controller
             "status2" => "active",
             "status3" => "",
             // "posts" => Post::all()
-            "posts" => Post::with('author', 'catagory')->latest()->get()
+            "posts" => Post::latest()->get()
         ]);
     }
     public function show(post $post)

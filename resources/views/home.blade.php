@@ -8,6 +8,7 @@
             background-size: cover;
             background-position: center;
             height: 100vh;
+            background-color: black;
         }
     </style>
 
