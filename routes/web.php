@@ -34,25 +34,17 @@ Route::get('/about', function () {
         "status3" => "active"
     ]);
 });
-
 Route::get('/blog', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
-    return view('category', [
-        "status1" => "",
-        "status2" => "",
-        "status3" => "active",
+    return view('posts', [
         'title' => $catagory->name,
         'posts' => $catagory->posts->load('author', 'catagory'),
-        'category' => $catagory->name
     ]);
 });
 Route::get('/authors/{author:username}', function (User $author) {
-    return view('author', [
-        "status1" => "",
-        "status2" => "",
-        "status3" => "active",
-        'title' => 'Author Posts',
+    return view('posts', [
+        'title' => "Author Posts : $author->name",
         'posts' => $author->post->load('catagory', 'author'),
     ]);
 });

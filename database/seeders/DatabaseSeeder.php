@@ -30,6 +30,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Programing',
             'slug' => 'Programing'
         ]);
+        catagory::create([
+            'name' => 'Personal',
+            'slug' => 'Personal'
+        ]);
         User::factory(5)->create();
         Post::factory(20)->create();
         // \App\Models\User::factory()->create([

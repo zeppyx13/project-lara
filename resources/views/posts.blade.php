@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="css/post-main.css">
 @endsection
 @section('container')
-    <h1>Posts</h1>
+    <h1>{{ $title }}</h1>
     @if ($posts->count())
         <div class="card mb-3">
             <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->catagory->name }}" class="card-img-top"
@@ -45,7 +45,7 @@
                                     href="/katagory/{{ $post->catagory->slug }}">{{ $post->catagory->name }}</a>
                             </h5>
                             <p class="card-text">{!! $post->excerpt !!}</p>
-                            <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Go somewhere</a>
+                            <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Read More</a>
                             <p class="card-text mt-4"><small
                                     class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small>
                             </p>
