@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    @include('partials.blog-nav')
+    @include('partials.nav')
     <div class="container mt-4">
         @yield('container')
     </div>

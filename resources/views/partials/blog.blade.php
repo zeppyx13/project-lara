@@ -11,14 +11,14 @@
                     <a class="nav-link" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog</a>
+                    <a class="nav-link {{ $status === 'Blog' ? 'active' : '' }}" href="/blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $status === 'Category' ? 'active' : '' }}" href="/list-category/">Category</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
             </ul>
         </div>
     </div>

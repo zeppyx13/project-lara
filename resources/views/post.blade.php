@@ -9,8 +9,9 @@
                 <h2>
                     {{ $Post->title }}
                 </h2>
-                <h5>BY:{{ $Post->author->name }} </h5>
-                <h5><a style="color: black" href="/katagory/{{ $Post->catagory->slug }}">{{ $Post->catagory->name }}</a>
+                <h5>BY:<a style="color: black" href="/blog?author={{ $Post->author->name }}">{{ $Post->author->name }}</a>
+                </h5>
+                <h5><a style="color: black" href="/blog?category={{ $Post->catagory->slug }}">{{ $Post->catagory->name }}</a>
                 </h5>
                 <img class="img-fluid" src="https://source.unsplash.com/1200x400?{{ $Post->catagory->name }}"
                     class="card-img-top" alt="{{ $Post->catagory->name }}">

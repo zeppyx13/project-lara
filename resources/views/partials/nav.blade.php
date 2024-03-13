@@ -14,6 +14,9 @@
                     <a class="nav-link {{ $status2 }}" href="/blog">Blog</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/list-category/">Category</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ $status3 }}" href="/about">About</a>
                 </li>
             </ul>
