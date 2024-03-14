@@ -4,6 +4,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
 use App\Models\catagory;
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::get('/about', function () {
     ]);
 });
 Route::get('/blog', [PostController::class, 'index']);
+Route::get('/Login', [LoginController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 // Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
 //     return view('posts', [

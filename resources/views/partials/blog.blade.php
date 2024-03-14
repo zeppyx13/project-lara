@@ -1,6 +1,6 @@
-<nav class="navbar navbar-dark navbar-expand-lg bg-transparant">
+<nav class="navbar navbar-dark navbar-expand-lg bg-transparant fs-4">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Gu-Blog</a>
+        <a class="navbar-brand fs-1" href="/">Gu-Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,11 @@
                     <a class="nav-link {{ $status === 'Category' ? 'active' : '' }}" href="/list-category/">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/login">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $status === 'Login' ? 'active' : '' }}  btn btn-danger rounded ms-3 p-2 fs-4"
+                        href="/about"><i class="bi bi-door-open"></i><strong> Login</strong></a>
                 </li>
             </ul>
         </div>
