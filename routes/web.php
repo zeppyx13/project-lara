@@ -36,20 +36,20 @@ Route::get('/about', function () {
 });
 Route::get('/blog', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
-Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
-    return view('posts', [
-        "status" => "Blog",
-        'title' => $catagory->name,
-        'posts' => $catagory->posts->load('author', 'catagory'),
-    ]);
-});
-Route::get('/authors/{author:username}', function (User $author) {
-    return view('posts', [
-        "status" => "Blog",
-        'title' => "Author Posts : $author->name",
-        'posts' => $author->post->load('catagory', 'author'),
-    ]);
-});
+// Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
+//     return view('posts', [
+//         "status" => "Blog",
+//         'title' => $catagory->name,
+//         'posts' => $catagory->posts->load('author', 'catagory'),
+//     ]);
+// });
+// Route::get('/authors/{author:username}', function (User $author) {
+//     return view('posts', [
+//         "status" => "Blog",
+//         'title' => "Author Posts : $author->name",
+//         'posts' => $author->post->load('catagory', 'author'),
+//     ]);
+// });
 Route::get('/list-category/', function () {
     return view('daftar', [
         "status" => "Category",

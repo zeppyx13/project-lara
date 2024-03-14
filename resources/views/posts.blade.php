@@ -41,6 +41,7 @@
                 <p class="card-text"><small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small></p>
             </div>
         </div>
+        {{ $posts->links() }}
         {{-- isi --}}
         <div class="container">
             <div class="row">

@@ -24,7 +24,7 @@ class PostController extends Controller
             "status" => "Blog",
             "title" => "$title",
             // "posts" => Post::all()
-            "posts" =>  Post::latest()->filter(request(['cari', 'category', 'authors']))->get()
+            "posts" =>  Post::latest()->filter(request(['cari', 'category', 'authors']))->paginate(7)->withQueryString()
         ]);
     }
     public function show(post $post)
