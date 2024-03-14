@@ -22,10 +22,11 @@ class Post extends Model
         //         ->orWhere('slug', 'like', '%' . $filters['cari'] . '%')
         //         ->orWhere('excerpt', 'like', '%' . $filters['cari'] . '%');
         // }
-        $query->when($filters['cari'] ?? false, function ($query, $cari) {
-            return $query->where('title', 'like', '%' . $cari . '%')
-                ->orWhere('slug', 'like', '%' . $cari . '%')
-                ->orWhere('excerpt', 'like', '%' . $cari . '%');
+        $query->when($filters['cari'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('body', 'like', '%' . $search . '%');
+            });
         });
         $query->when($filters['category'] ?? false, function ($query, $category) {
             return $query->whereHas('catagory', function ($query) use ($category) {
