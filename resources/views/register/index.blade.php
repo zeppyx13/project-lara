@@ -35,31 +35,35 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form">
+                <form action="/Register" method="POST" class="login100-form validate-form">
+                    @csrf
                     <span class="login100-form-title p-b-43">
                         Create an acount
                     </span>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="nama" required autocomplete="off">
+                        <input class="input100" type="text" name="name" required autocomplete="off"
+                            value="{{ old('nama') }}">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Name</span>
                     </div>
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="username" required autocomplete="off">
+                        <input class="input100" type="text" name="username" required autocomplete="off"
+                            value="{{ old('username') }}">
                         <span class="focus-input100"></span>
                         <span class="label-input100">User Name</span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" required autocomplete="off">
+                        <input class="input100" type="email" name="email" required autocomplete="off"
+                            value="{{ old('email') }}">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email</span>
                     </div>
 
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="pass" required autocomplete="off">
+                        <input class="input100" type="password" name="password" required autocomplete="off">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
                     </div>
@@ -112,6 +116,7 @@
     <!--===============================================================================================-->
     <script src="vendor/bootstrap/js/popper.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 

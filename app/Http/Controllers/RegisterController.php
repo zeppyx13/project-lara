@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\register;
+use App\Models\User;
 use App\Http\Requests\StoreregisterRequest;
 use App\Http\Requests\UpdateregisterRequest;
 
@@ -31,7 +32,16 @@ class RegisterController extends Controller
      */
     public function store(StoreregisterRequest $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|min:3|max:35',
+            'username' => 'required|min:5|max:15|unique:users',
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:8|max:255'
+
+        ]);
+        User::create($validatedData);
+        session()->flash('berhasil', 'Registration Successful');
+        return redirect('/Login');
     }
 
     /**

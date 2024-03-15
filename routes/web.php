@@ -39,6 +39,7 @@ Route::get('/about', function () {
 Route::get('/blog', [PostController::class, 'index']);
 Route::get('/Login', [LoginController::class, 'index']);
 Route::get('/Register', [RegisterController::class, 'index']);
+Route::post('/Register', [RegisterController::class, 'store']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 // Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
 //     return view('posts', [
