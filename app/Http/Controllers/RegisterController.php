@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Login;
-use App\Http\Requests\StoreLoginRequest;
-use App\Http\Requests\UpdateLoginRequest;
+use App\Models\register;
+use App\Http\Requests\StoreregisterRequest;
+use App\Http\Requests\UpdateregisterRequest;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('login.index', [
-            "title" => "Login",
+        return view('register.index', [
+            "title" => "Register",
         ]);
     }
 
@@ -29,7 +29,7 @@ class LoginController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLoginRequest $request)
+    public function store(StoreregisterRequest $request)
     {
         //
     }
@@ -37,7 +37,7 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Login $login)
+    public function show(register $register)
     {
         //
     }
@@ -45,7 +45,7 @@ class LoginController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Login $login)
+    public function edit(register $register)
     {
         //
     }
@@ -53,7 +53,7 @@ class LoginController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLoginRequest $request, Login $login)
+    public function update(UpdateregisterRequest $request, register $register)
     {
         //
     }
@@ -61,7 +61,7 @@ class LoginController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Login $login)
+    public function destroy(register $register)
     {
         //
     }

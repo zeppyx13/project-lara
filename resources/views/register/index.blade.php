@@ -37,9 +37,19 @@
             <div class="wrap-login100">
                 <form class="login100-form validate-form">
                     <span class="login100-form-title p-b-43">
-                        Login to dashboard
+                        Create an acount
                     </span>
 
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" name="nama" required autocomplete="off">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Name</span>
+                    </div>
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" name="username" required autocomplete="off">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">User Name</span>
+                    </div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="email" required autocomplete="off">
@@ -80,7 +90,7 @@
                     </div>
                     <div class="text-center p-t-46 p-b-20">
                         <span class="txt2">
-                            or <a href="/Register">don't have an account?</a>
+                            or <a href="/Login">Back to Login</a>
                         </span>
                     </div>
                 </form>
