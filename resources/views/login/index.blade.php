@@ -95,7 +95,7 @@
                     </div>
                 </form>
 
-                <div class="login100-more" style="background-image: url('assets/img/bg-01.jpg');">
+                <div class="login100-more" style="background-image: url('https://source.unsplash.com/720x939');">
                 </div>
             </div>
         </div>
