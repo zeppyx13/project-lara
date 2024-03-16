@@ -50,7 +50,8 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form">
+                <form action="/Login" method="POST" class="login100-form validate-form">
+                    @csrf
                     @if (session()->has('berhasil'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
@@ -62,20 +63,31 @@
                                 aria-label="Close"></button>
                         </div>
                     @endif
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg>
+                            <strong> Login Failed!</strong> {{ session('error') }}.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                     <span class="login100-form-title p-b-43">
                         Login to dashboard
                     </span>
 
 
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" required autocomplete="off">
+                        <input class="input100" type="email" name="email" required autocomplete="off">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email</span>
                     </div>
 
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="pass" required autocomplete="off">
+                        <input class="input100" type="password" name="password" required autocomplete="off">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
                     </div>

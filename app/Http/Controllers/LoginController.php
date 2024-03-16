@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Login;
+use App\Models\User;
 use App\Http\Requests\StoreLoginRequest;
 use App\Http\Requests\UpdateLoginRequest;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class LoginController extends Controller
 {
@@ -17,7 +22,29 @@ class LoginController extends Controller
             "title" => "Login",
         ]);
     }
+    public function auth(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email:dns'],
+            'password' => ['required'],
+        ]);
+        // dd(Auth::attempt($credentials));
+        // dd(Auth::attempt($credentials);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
+            return redirect()->intended('/blog');
+        }
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (!$user) {
+            // Jika tidak ada pengguna dengan email yang dimasukkan, kembalikan pesan kesalahan yang sesuai
+            return back()->with('error', "Email doesn't exist.");
+        } else {
+            // Jika email terdaftar tetapi kata sandi salah, kembalikan pesan kesalahan yang sesuai
+            return back()->with('error', 'Password wrong.');
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */

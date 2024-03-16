@@ -38,6 +38,7 @@ Route::get('/about', function () {
 });
 Route::get('/blog', [PostController::class, 'index']);
 Route::get('/Login', [LoginController::class, 'index']);
+Route::post('/Login', [LoginController::class, 'auth']);
 Route::get('/Register', [RegisterController::class, 'index']);
 Route::post('/Register', [RegisterController::class, 'store']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
