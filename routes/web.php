@@ -5,7 +5,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardPostController;
 use App\Models\catagory;
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +39,14 @@ Route::get('/about', function () {
     ]);
 });
 Route::get('/blog', [PostController::class, 'index']);
-Route::get('/Login', [LoginController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/Login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/Login', [LoginController::class, 'auth']);
-Route::get('/Register', [RegisterController::class, 'index']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/Register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/Register', [RegisterController::class, 'store']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 // Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
 //     return view('posts', [
 //         "status" => "Blog",
