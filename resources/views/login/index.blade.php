@@ -93,7 +93,7 @@
                                 <span class="label-input100">Password</span>
                             </div>
                         </div>
-                        <div class="col-1">
+                        <div class="col-1 pl-1 ">
                             <div class="icon d-flex align-content-center">
                                 <i class="bi bi-eye-fill flex-fill mt-4 fs-3" id="iconpw"></i>
                             </div>

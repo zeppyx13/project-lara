@@ -49,25 +49,23 @@
 @section('container')
     <div class="img-bg"></div>
     <div class="div heading">
-        <h1 id="companionMethods" class="text-center te"></h1>
+        <h1 id="companionMethods" class="text-center fs-1"></h1>
     </div>
     <hr class="garis">
     {{--  --}}
     <div class="container badge text-center">
         <div class="row position-relative">
             {{--  --}}
-            <div class="col-7 quotes-container">
+            <div class="col-7 quotes-container" class="fs-4">
                 <i id="quotes" class="mt-2"></i>
             </div>
             {{--  --}}
             <div class="col-1">
             </div>
             <div class="col-4 weather-container" id="container-suhu">
-                <div class="fs-3 mt-2">
+                <div id="suhu" class="fs-4">
                 </div>
-                <div id="suhu">
-                </div>
-                <div id="cuaca">
+                <div id="cuaca" class="fs-4">
                 </div>
             </div>
         </div>
@@ -171,7 +169,7 @@
             },
             success: function(result) {
                 $('#suhu').html(result.name + ', ' + result.main.feels_like + '°C');
-                $('#cuaca').html(result.weather[0].description +
+                $('#cuaca').html(' ' + result.weather[0].description +
                     `<img style='z-index:3;' width="80" height="80" src="https://openweathermap.org/img/wn/` +
                     result.weather[0].icon + `.png" alt="">`);
             }
@@ -188,13 +186,22 @@
                 </div>`;
                 break;
             case error.POSITION_UNAVAILABLE:
-                console.log("Location information is unavailable.");
+                con.innerHTML = `                
+                <div class="fs-5 mt-3">
+                    Location information is unavailable.
+                </div>`;
                 break;
             case error.TIMEOUT:
-                console.log("The request to get user location timed out.");
+                con.innerHTML = `                
+                <div class="fs-5 mt-3">
+                    The request to get user location timed out.
+                </div>`;
                 break;
             case error.UNKNOWN_ERROR:
-                console.log("An unknown error occurred.");
+                con.innerHTML = `                
+                <div class="fs-5 mt-3">
+                    An unknown error occurred.
+                </div>`;
                 break;
         }
     }
