@@ -33,7 +33,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/blog');
+            return redirect()->intended('/dashboard');
         }
         $user = User::where('email', $credentials['email'])->first();
 

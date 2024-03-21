@@ -16,7 +16,11 @@
                 <article class="my-3 fs-5">
                     {!! $posts->body !!}
                 </article>
-                <a style="color: rgb(255, 0, 0)" href="/blog">Back</a>
+                <div class="btn d-flex justify-content-end" style="gap: 5px">
+                    <button class="btn btn-primary rounded"><span data-feather="corner-down-left"></span> Back</button>
+                    <button class="btn btn-warning rounded"><span data-feather="edit"></span> Edit</button>
+                    <button class="btn btn-danger rounded"><span data-feather="trash-2"></span> Delete</button>
+                </div>
             </div>
         </div>
     </div>

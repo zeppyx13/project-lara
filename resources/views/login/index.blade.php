@@ -84,14 +84,21 @@
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email</span>
                     </div>
-
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" required autocomplete="off">
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Password</span>
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <input class="input100" type="password" name="password" id="password" required
+                                    autocomplete="off">
+                                <span class="focus-input100"></span>
+                                <span class="label-input100">Password</span>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="icon d-flex align-content-center">
+                                <i class="bi bi-eye-fill flex-fill mt-4 fs-3" id="iconpw"></i>
+                            </div>
+                        </div>
                     </div>
-
                     <div class="flex-sb-m w-full p-t-3 p-b-32">
                         <div class="contact100-form-checkbox">
                             <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
@@ -142,6 +149,21 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+        let iconpw = document.getElementById("iconpw");
+        let password = document.getElementById("password");
+        iconpw.onclick = function() {
+            if (password.type == "password") {
+                password.type = "text";
+                iconpw.classList.remove('bi-eye-fill');
+                iconpw.classList.add('bi-eye-slash-fill');
+            } else {
+                password.type = "password"
+                iconpw.classList.remove('bi-eye-slash-fill');
+                iconpw.classList.add('bi-eye-fill');
+            }
+        }
     </script>
 </body>
 
