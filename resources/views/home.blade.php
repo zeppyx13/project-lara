@@ -62,7 +62,9 @@
             {{--  --}}
             <div class="col-1">
             </div>
-            <div class="col-4 weather-container">
+            <div class="col-4 weather-container" id="container-suhu">
+                <div class="fs-3 mt-2">
+                </div>
                 <div id="suhu">
                 </div>
                 <div id="cuaca">
@@ -147,25 +149,55 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
 <script>
-    $.ajax({
-        url: 'https://api.openweathermap.org/data/2.5/weather',
-        type: 'get',
-        dataType: 'json',
-        data: {
-            'lang': 'id',
-            'appid': '<?php echo env('API_KEY_CUACA'); ?>',
-            'units': 'metric',
-            'q': 'Denpasar'
-        },
-        success: function(result) {
-            $('#suhu').html(result.name + ', ' + result.main.feels_like + '°C')
-            $('#cuaca').html(result.weather[0].description +
-                `<img style='z-index:3;' width="80" height="80" src="https://openweathermap.org/img/wn/` +
-                result
-                .weather[
-                    0].icon + `.png" alt="">`)
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+
+    function showPosition(position) {
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude)
+        $.ajax({
+            url: 'https://api.openweathermap.org/data/2.5/weather',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                'lang': 'id',
+                'appid': '<?php echo env('API_KEY_CUACA'); ?>', // Ini merupakan PHP, pastikan kode PHP ini di-render oleh server
+                'units': 'metric',
+                'lat': position.coords.latitude,
+                'lon': position.coords.longitude
+            },
+            success: function(result) {
+                $('#suhu').html(result.name + ', ' + result.main.feels_like + '°C');
+                $('#cuaca').html(result.weather[0].description +
+                    `<img style='z-index:3;' width="80" height="80" src="https://openweathermap.org/img/wn/` +
+                    result.weather[0].icon + `.png" alt="">`);
+            }
+        });
+    }
+
+    function showError(error) {
+        let con = document.getElementById('container-suhu');
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                con.innerHTML = `                
+                <div class="fs-5 mt-3">
+                    User denied the request for Geolocation.
+                </div>`;
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.log("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                console.log("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                console.log("An unknown error occurred.");
+                break;
         }
-    })
+    }
 </script>
 {{-- background --}}
 <script>
