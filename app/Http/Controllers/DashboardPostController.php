@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\catagory;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 class DashboardPostController extends Controller
 {
@@ -24,7 +27,11 @@ class DashboardPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.posts.create', [
+            "title" => "Create Post",
+            "status" => 'Posts',
+            'category' => catagory::all()
+        ]);
     }
 
     /**
@@ -32,7 +39,16 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'title' => 'required|max:40|min:2',
+            'slug' => 'required|unique:posts',
+            'catagory_id' => 'required',
+            'body' => 'required|min:2'
+        ]);
+        $validateData['user_id'] = auth()->user()->id;
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body, 100));
+        Post::create($validateData);
+        return redirect('dashboard/posts/')->with('success', 'New Post Has Beend Created');
     }
 
     /**
@@ -52,7 +68,6 @@ class DashboardPostController extends Controller
      */
     public function edit(string $id)
     {
-        //
     }
 
     /**
@@ -69,5 +84,10 @@ class DashboardPostController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function checkSlug(Request $request)
+    {
+        $slug = $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

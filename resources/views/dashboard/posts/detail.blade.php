@@ -17,7 +17,9 @@
                     {!! $posts->body !!}
                 </article>
                 <div class="btn d-flex justify-content-end" style="gap: 5px">
-                    <button class="btn btn-primary rounded"><span data-feather="corner-down-left"></span> Back</button>
+                    <a href="/dashboard/posts"><button class="btn btn-primary rounded"><span
+                                data-feather="corner-down-left"></span>
+                            Back</button></a>
                     <button class="btn btn-warning rounded"><span data-feather="edit"></span> Edit</button>
                     <button class="btn btn-danger rounded"><span data-feather="trash-2"></span> Delete</button>
                 </div>

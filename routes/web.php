@@ -47,6 +47,7 @@ Route::get('/Register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/Register', [RegisterController::class, 'store']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
 // Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
 //     return view('posts', [
 //         "status" => "Blog",
