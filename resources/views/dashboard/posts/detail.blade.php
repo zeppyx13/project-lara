@@ -21,7 +21,12 @@
                                 data-feather="corner-down-left"></span>
                             Back</button></a>
                     <button class="btn btn-warning rounded"><span data-feather="edit"></span> Edit</button>
-                    <button class="btn btn-danger rounded"><span data-feather="trash-2"></span> Delete</button>
+                    <form action="/dashboard/posts/{{ $posts->id }}" method="Post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-danger rounded" onclick="return confirm('Are You sure to delete')"><span
+                                data-feather="trash-2"></span> Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

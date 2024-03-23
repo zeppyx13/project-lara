@@ -10,6 +10,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (session()->has('delete'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Yeeay!</strong> {{ session('delete') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="table-responsive col-lg-8">
             <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Add New posts</a>
             <table class="table table-striped table-sm">
@@ -27,16 +33,24 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->catagory->name }}</td>
-                            <td class="d-flex justify-content-center">
-                                <a href="/dashboard/posts/{{ $item->slug }}" class="btn btn-info m-1">
-                                    <span data-feather="eye"></span>
+                            <td class="d-flex justify-content-center flex-fill" style="gap: 10px;">
+                                <a href="/dashboard/posts/{{ $item->slug }}">
+                                    <button class="btn btn-info rounded border-0 btn-sm"><span data-feather="eye"></span>
+                                        Show</button>
                                 </a>
-                                <a href="/dashbord/posts/{{ $item->id }}" class="btn btn-warning m-1">
-                                    <span data-feather="edit"></span>
+                                <a href="/dashbord/posts/{{ $item->id }}">
+                                    <button class="btn btn-warning rounded border-0 btn-sm"><span
+                                            data-feather="edit"></span>
+                                        Delete</button>
                                 </a>
-                                <a href="/dashbord/posts/{{ $item->id }}" class="btn btn-danger m-1">
-                                    <span data-feather="trash-2"></span>
-                                </a>
+                                <form action="/dashboard/posts/{{ $item->id }}" method="Post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="btn btn-danger rounded border-0 btn-sm"
+                                        onclick="return confirm('Are You sure to delete')"><span
+                                            data-feather="trash-2"></span>
+                                        Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
