@@ -38,10 +38,10 @@
                                     <button class="btn btn-info rounded border-0 btn-sm"><span data-feather="eye"></span>
                                         Show</button>
                                 </a>
-                                <a href="/dashbord/posts/{{ $item->id }}">
+                                <a href="/dashboard/posts/{{ $item->slug }}/edit">
                                     <button class="btn btn-warning rounded border-0 btn-sm"><span
                                             data-feather="edit"></span>
-                                        Delete</button>
+                                        Edit</button>
                                 </a>
                                 <form action="/dashboard/posts/{{ $item->id }}" method="Post" class="d-inline">
                                     @method('delete')

@@ -40,7 +40,7 @@ class DashboardPostController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'title' => 'required|max:40|min:2',
+            'title' => 'required|max:50|min:2',
             'slug' => 'required|unique:posts',
             'catagory_id' => 'required',
             'body' => 'required|min:2'
@@ -66,16 +66,35 @@ class DashboardPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
+        return view('dashboard.posts.edit', [
+            "title" => "Create Post",
+            "status" => 'Posts',
+            'posts' => $post,
+            'category' => catagory::all()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        @dd($id);
+        $rules = [
+            'title' => 'required|max:50|min:2',
+            'catagory_id' => 'required',
+            'body' => 'required|min:2'
+        ];
+        if ($request->slug != $id->slug) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+        $validateData = $request->validate($rules);
+        $validateData['user_id'] = auth()->user()->id;
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body, 100));
+        Post::where('id', $id->id);
+        return redirect('dashboard/posts/')->with('success', 'Update Post succesed');
     }
 
     /**
