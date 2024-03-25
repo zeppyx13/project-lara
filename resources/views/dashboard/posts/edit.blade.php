@@ -5,9 +5,10 @@
             <h1 class="h2">Update Post</h1>
         </div>
         <div class="col-lg-8">
-            <form method="Post" action="/dashboard/posts/{{ $posts->title }}">
+            <form method="Post" action="/dashboard/posts/{{ $posts->slug }}">
                 @method('put')
                 @csrf
+                <input type="hidden" name="id" value="{{ $posts->id }}">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text"

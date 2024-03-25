@@ -79,21 +79,20 @@ class DashboardPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $post)
     {
-        @dd($id);
         $rules = [
             'title' => 'required|max:50|min:2',
             'catagory_id' => 'required',
             'body' => 'required|min:2'
         ];
-        if ($request->slug != $id->slug) {
+        if ($request->slug != $post) {
             $rules['slug'] = 'required|unique:posts';
         }
         $validateData = $request->validate($rules);
         $validateData['user_id'] = auth()->user()->id;
         $validateData['excerpt'] = Str::limit(strip_tags($request->body, 100));
-        Post::where('id', $id->id);
+        Post::where('id', $request->id)->update($validateData);
         return redirect('dashboard/posts/')->with('success', 'Update Post succesed');
     }
 
