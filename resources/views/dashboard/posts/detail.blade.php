@@ -11,8 +11,13 @@
                 <h5><a style="color: black"
                         href="/blog?category={{ $posts->catagory->slug }}">{{ $posts->catagory->name }}</a>
                 </h5>
-                <img class="img-fluid" src="https://source.unsplash.com/1200x400?{{ $posts->catagory->name }}"
-                    class="card-img-top" alt="{{ $posts->catagory->name }}">
+                @if ($posts->images)
+                    <img class="img-fluid" src="{{ asset('storage/' . $posts->images) }}" class="card-img-top"
+                        alt="{{ $posts->catagory->name }}">
+                @else
+                    <img class="img-fluid" src="https://source.unsplash.com/1200x400?{{ $posts->catagory->name }}"
+                        class="card-img-top" alt="{{ $posts->catagory->name }}">
+                @endif
                 <article class="my-3 fs-5">
                     {!! $posts->body !!}
                 </article>
