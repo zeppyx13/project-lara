@@ -32,20 +32,11 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
                             <td class="d-flex justify-content-center flex-fill" style="gap: 10px;">
-                                <a href="/dashboard/category/{{ $item->slug }}">
-                                    <button class="btn btn-info rounded border-0 btn-sm"><span data-feather="eye"></span>
-                                        Show</button>
-                                </a>
-                                <a href="/dashboard/category/{{ $item->slug }}/edit">
-                                    <button class="btn btn-warning rounded border-0 btn-sm"><span
-                                            data-feather="edit"></span>
-                                        Edit</button>
-                                </a>
                                 <form action="/dashboard/category/{{ $item->id }}" method="Post" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger rounded border-0 btn-sm"
-                                        onclick="return confirm('Are You sure to delete')"><span
+                                        onclick="return confirm('Are You sure to delete Category: {{ $item->name }}')"><span
                                             data-feather="trash-2"></span>
                                         Delete</button>
                                 </form>

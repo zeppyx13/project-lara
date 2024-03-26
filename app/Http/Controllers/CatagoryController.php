@@ -72,8 +72,9 @@ class CatagoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(catagory $catagory)
+    public function destroy(string $catagory)
     {
-        //
+        catagory::destroy($catagory);
+        return redirect('dashboard/category/')->with('delete', 'category Has Beend Deleted');
     }
 }
