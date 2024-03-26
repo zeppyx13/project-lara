@@ -25,8 +25,16 @@
     @if ($posts->count())
         {{-- hero --}}
         <div class="card mb-3">
-            <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->catagory->name }}" class="card-img-top"
-                alt="{{ $posts[0]->catagory->name }}">
+            @if ($posts[0]->images)
+                <div class="con" style="max-width: 400px; overflow:hidden">
+                    <img src="{{ 'storage/' . $posts[0]->images }}" class="card-img-top"
+                        alt="{{ $posts[0]->catagory->name }}">
+                </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->catagory->name }}" class="card-img-top"
+                    alt="{{ $posts[0]->catagory->name }}">
+            @endif
+
             <div class="card-body text-center">
                 <a class="judul" href="posts/{{ $posts[0]->slug }}">
                     <h3 class="card-title">{{ $posts[0]->title }}</h3>
@@ -51,8 +59,13 @@
                             {{ $post->catagory->name }}
                         </div>
                         <div class="card mb-3">
-                            <img src="https://source.unsplash.com/500x400?{{ $post->catagory->name }}" class="card-img-top"
-                                alt="{{ $post->catagory->name }}">
+                            @if ($post->images)
+                                <img src="{{ 'storage/' . $post->images }}" class="card-img-top"
+                                    alt="{{ $post->catagory->name }}">
+                            @else
+                                <img src="https://source.unsplash.com/500x400?{{ $post->catagory->name }}"
+                                    class="card-img-top" alt="{{ $post->catagory->name }}">
+                            @endif
                             <div class="card-body">
                                 <a class="judul" href="posts/{{ $post->slug }}">
                                     <h3 class="card-title">{{ $post->title }}</h3>

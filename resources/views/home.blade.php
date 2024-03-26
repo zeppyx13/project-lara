@@ -73,11 +73,18 @@
     {{--  --}}
     <div class="search">
         <form class="d-flex" role="search">
-            <input class="form-control me-2 mt-4" type="search" placeholder="Search Some Article" aria-label="Search">
+            <input class="form-control me-2 mt-4" type="search" placeholder="Find Some things" aria-label="Search">
         </form>
     </div>
-    <div id="gambar" style="z-index:2;">
+    <div class="container">
+        <div class="row d-flex justify-center">
+            <div class="col-md-8">
 
+            </div>
+        </div>
+    </div>
+    {{-- container hasil --}}
+    <div id="gambar" style="z-index:2;">
     </div>
 @endsection
 {{-- js --}}
@@ -139,6 +146,34 @@
         const response = await result.response;
         const text = response.text();
         out.innerHTML = text
+    }
+    run();
+    // ...
+</script>
+<script type="module">
+    const out = document.getElementById("quotes")
+    import {
+        GoogleGenerativeAI
+    } from "@google/generative-ai";
+
+    // Fetch your API_KEY
+    const API_KEY = "<?php echo env('API_KEY_AI'); ?>"
+
+    // Access your API key (see "Set up your API key" above)
+    const genAI = new GoogleGenerativeAI(API_KEY);
+
+    async function run() {
+        // For text-only input, use the gemini-pro model
+        const model = genAI.getGenerativeModel({
+            model: "gemini-pro"
+        });
+
+        const prompt = "hai"
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        console.log(text)
     }
     run();
     // ...

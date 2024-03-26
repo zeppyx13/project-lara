@@ -13,8 +13,14 @@
                 </h5>
                 <h5><a style="color: black" href="/blog?category={{ $Post->catagory->slug }}">{{ $Post->catagory->name }}</a>
                 </h5>
-                <img class="img-fluid" src="https://source.unsplash.com/1200x400?{{ $Post->catagory->name }}"
-                    class="card-img-top" alt="{{ $Post->catagory->name }}">
+                @if ($Post->images)
+                    <img class="img-fluid" src="{{ '../storage/' . $Post->images }}" class="card-img-top"
+                        alt="{{ $Post->catagory->name }}">
+                @else
+                    <img class="img-fluid" src="https://source.unsplash.com/1200x400?{{ $Post->catagory->name }}"
+                        class="card-img-top" alt="{{ $Post->catagory->name }}">
+                @endif
+
                 <article class="my-3 fs-5">
                     {!! $Post->body !!}
                 </article>
