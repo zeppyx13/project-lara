@@ -13,7 +13,11 @@ class CatagoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.category.index', [
+            "title" => "Create category",
+            "status" => "",
+            'category' => catagory::all()
+        ]);
     }
 
     /**

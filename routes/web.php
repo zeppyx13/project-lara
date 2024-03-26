@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\DashboardPostController;
 use App\Models\catagory;
 /*
@@ -48,6 +49,7 @@ Route::post('/Register', [RegisterController::class, 'store']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
+Route::resource('/dashboard/category', CatagoryController::class)->except('show')->middleware('Admin');
 // Route::get('/katagory/{catagory:slug}', function (catagory $catagory) {
 //     return view('posts', [
 //         "status" => "Blog",
