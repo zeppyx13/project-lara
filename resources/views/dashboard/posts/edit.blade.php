@@ -1,11 +1,11 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.mainE')
 @section('container')
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Update Post</h1>
         </div>
         <div class="col-lg-8">
-            <form method="Post" action="/dashboard/posts/{{ $posts->slug }}">
+            <form method="Post" action="/dashboard/posts/{{ $posts->slug }}" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <input type="hidden" name="id" value="{{ $posts->id }}">
@@ -46,6 +46,24 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label for="formFile" class="form-label">Post Image</label>
+                    <input type="hidden" value="{{ $posts->images }}" name="oldImage">
+                    @if ($posts->images)
+                        <img src="{{ asset('../storage/' . $posts->images) }}" alt=""
+                            class="img-preview img-fluid mb-3 col-4 d-block">
+                    @else
+                        <img alt="" class="img-preview img-fluid mb-3 col-4">
+                    @endif
+                    <input
+                        class="form-control img @error('images')
+                    is-invalid
+                    @enderror"
+                        type="file" id="formFile" name="images" aria-describedby="formFile" onchange="prev()">
+                    @error('images')
+                        <div id="formFile" class="form-text invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label for="body" class="form-label">body :</label>
                     @error('body')
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -56,7 +74,11 @@
                     <input id="body" type="hidden" name="body" required value="{{ old('body', $posts->body) }}">
                     <trix-editor input="body"></trix-editor>
                 </div>
-                <button type="submit" class="btn btn-primary">Create</button>
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="/dashboard/posts" class="ms-auto">
+                        <button type="button" class="btn btn-danger ms-auto">Back</button></a>
+                </div>
             </form>
         </div>
     </main>
@@ -74,5 +96,21 @@
         document.addEventListener('trix-file-accept'function(e) {
             e.preventDefault();
         });
+    </script>
+    <script>
+        function prev() {
+            const img = document.querySelector('.img');
+            const imgprev = document.querySelector('.img-preview');
+            const images = document.getElementById('formFile'); // tambahkan ini untuk mendapatkan elemen input gambar
+
+            imgprev.style.display = 'block';
+            const oFReader = new FileReader();
+
+            oFReader.readAsDataURL(images.files[0]); // perbaiki penamaan variabel dari "images" menjadi "img"
+
+            oFReader.onload = function(oFREvent) {
+                imgprev.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection
