@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\catagory;
 use App\Http\Requests\StorecatagoryRequest;
 use App\Http\Requests\UpdatecatagoryRequest;
+use Illuminate\Http\Request;
 
 class CatagoryController extends Controller
 {
@@ -25,15 +26,23 @@ class CatagoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.category.create', [
+            "title" => "Create Category",
+            "status" => '',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorecatagoryRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|min:2',
+            'slug' => 'required|min:2|unique:catagories'
+        ]);
+        catagory::create($validateData);
+        return redirect('dashboard/category/')->with('success', 'New category Has Beend Created');
     }
 
     /**
