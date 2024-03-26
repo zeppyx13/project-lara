@@ -45,11 +45,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Post Image</label>
+                    <img alt="" class="img-preview img-fluid mb-3 col-4">
                     <input
-                        class="form-control @error('images')
+                        class="form-control img @error('images')
                     is-invalid
                     @enderror"
-                        type="file" id="formFile" name="images" aria-describedby="formFile">
+                        type="file" id="formFile" name="images" aria-describedby="formFile" onchange="prev()">
                     @error('images')
                         <div id="formFile" class="form-text invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -83,5 +84,21 @@
         document.addEventListener('trix-file-accept'function(e) {
             e.preventDefault();
         });
+    </script>
+    <script>
+        function prev() {
+            const img = document.querySelector('.img');
+            const imgprev = document.querySelector('.img-preview');
+            const images = document.getElementById('formFile'); // tambahkan ini untuk mendapatkan elemen input gambar
+
+            imgprev.style.display = 'block';
+            const oFReader = new FileReader();
+
+            oFReader.readAsDataURL(images.files[0]); // perbaiki penamaan variabel dari "images" menjadi "img"
+
+            oFReader.onload = function(oFREvent) {
+                imgprev.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection
