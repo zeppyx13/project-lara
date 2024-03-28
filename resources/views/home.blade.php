@@ -76,12 +76,8 @@
             <input class="form-control me-2 mt-4" type="search" placeholder="Find Some things" aria-label="Search">
         </form>
     </div>
-    <div class="container">
-        <div class="row d-flex justify-center">
-            <div class="col-md-8">
+    <div class="container" id="output">
 
-            </div>
-        </div>
     </div>
     {{-- container hasil --}}
     <div id="gambar" style="z-index:2;">
@@ -150,8 +146,10 @@
     run();
     // ...
 </script>
+{{--  --}}
 <script type="module">
-    const out = document.getElementById("quotes")
+    const output = document.getElementById("output")
+    const promp = "halo"
     import {
         GoogleGenerativeAI
     } from "@google/generative-ai";
@@ -168,12 +166,14 @@
             model: "gemini-pro"
         });
 
-        const prompt = "hai"
+        const prompt = promp
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        console.log(text)
+        output.innerHTML = ` <div class="col-md-12 text-white mt-5 bg-secondary p-3 rounded">` + text +
+            `
+    </div>`
     }
     run();
     // ...
